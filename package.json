@@ -1,0 +1,60 @@
+{
+  "name": "jobify-app",
+  "version": "1.0.0",
+  "description": "A fullsctack application that allows you to track your job search",
+  "private": true,
+  "main": "index.js",
+  "repository": "git@github.com:francislagares/mern-monorep.git",
+  "author": "Francis Lagares <francis.lagares@gmail.com>",
+  "license": "MIT",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "server": "yarn workspace @jobify-app/server start:dev",
+    "client": "yarn workspace @jobify-app/client start",
+    "start": "concurrently --kill-others-on-fail \"yarn server\"  \"yarn client\"",
+    "test:watch": "jest --watchAll --no-cache",
+    "test:ci": "jest",
+    "build-server": "yarn workspace @jobify-app/server build",
+    "build-client": "yarn workspace @jobify-app/client build",
+    "deploy": "concurrently --kill-others-on-fail \"yarn build-client\"  \"yarn server\"",
+    "type-check": "tsc --project tsconfig.json --pretty --noEmit",
+    "lint": "eslint --ext js,jsx,ts,tsx --fix --ignore-path .gitignore .",
+    "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx|json|md)\" --write"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^16.0.2",
+    "@commitlint/config-conventional": "^16.0.0",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.8",
+    "@typescript-eslint/eslint-plugin": "^5.9.1",
+    "@typescript-eslint/parser": "^5.9.1",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^25.3.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "jest": "^27.4.7",
+    "lint-staged": "^12.1.7",
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "concurrently": "^7.0.0"
+  },
+  "engines": {
+    "node": ">=17.3.0",
+    "npm": ">=8.3.0"
+  },
+  "packageManager": "yarn@3.1.1"
+}
