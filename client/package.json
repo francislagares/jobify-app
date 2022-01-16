@@ -9,7 +9,7 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "axios": "^0.24.0",
-    "history": "^5.1.0",
+    "history": "^5.2.0",
     "moment": "^2.29.1",
     "normalize.css": "^8.0.1",
     "react": "^17.0.2",
@@ -20,12 +20,13 @@
     "web-vitals": "^2.1.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "@types/styled-components": "^5.1.20",
     "prettier-stylelint": "^0.4.2",
     "stylelint": "^14.2.0",
     "stylelint-a11y": "^1.2.3",
