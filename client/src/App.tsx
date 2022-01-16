@@ -1,9 +1,9 @@
-import './App.css';
+import Landing from 'pages/Landing';
 
 const App = (): JSX.Element => {
   return (
-    <div className="App">
-      <h1>Hello from React</h1>
+    <div className="app">
+      <Landing />
     </div>
   );
 };
