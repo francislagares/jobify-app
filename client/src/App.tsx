@@ -1,4 +1,4 @@
-import Landing from 'pages/Landing';
+import Landing from '@/views/Home/Landing';
 
 const App = (): JSX.Element => {
   return (
