@@ -1,4 +1,4 @@
-import { Logo } from '@/components/Logo/Logo';
+import Logo from '@/components/Logo/Logo';
 import main from '@/assets/images/main.svg';
 import Wrapper from '@/assets/wrappers/LandingPage';
 
