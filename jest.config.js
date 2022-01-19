@@ -1,10 +1,10 @@
 module.exports = {
   globals: {
     'ts-jest': {
-      tsconfig: 'tsconfig.json',
+      tsconfig: 'tsconfig.jest.json',
     },
   },
-  roots: ['<rootDir>/server/src/tests', '<rootDir>/client/src/__tests__'],
+  roots: ['<rootDir>/server/src/tests', '<rootDir>/client/src'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
@@ -15,7 +15,10 @@ module.exports = {
   collectCoverage: true,
   coveragePathIgnorePatterns: ['(test/.*.mock).(jsx?|tsx?)$'],
   moduleNameMapper: {
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      '<rootDir>/__mocks__/fileMock.js',
     '\\.(css|scss|sass)$': 'identity-obj-proxy',
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
   verbose: true,
   projects: ['<rootDir>'],
