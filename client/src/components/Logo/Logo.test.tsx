@@ -1,8 +1,11 @@
 import { render, screen } from '@testing-library/react';
-import Logo from '@/components/Logo/Logo';
+import Logo from './Logo';
 
-test('renders learn react link', () => {
+test('renders logo', () => {
   render(<Logo />);
-  const imgElement = screen.getAllByAltText;
-  expect(imgElement).toBe(/jobify/i);
+
+  const logoImage = screen.getByRole('img');
+
+  expect(logoImage).toBeInTheDocument();
+  expect(logoImage).toHaveAttribute('alt', 'Jobify');
 });
