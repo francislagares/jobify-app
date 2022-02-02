@@ -1,8 +1,7 @@
 {
-  "extends": "./tsconfig.paths.json",
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "jsx": "react-jsx",
-    "esModuleInterop": true,
+    "baseUrl": "./src",
   },
   "include": [
     "./src/**/*.ts",
