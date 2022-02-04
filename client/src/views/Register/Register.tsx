@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useState } from 'react';
-import { FormInput, Logo } from 'components';
+import { FormInput, Logo, Alert } from 'components';
 import Wrapper from 'assets/wrappers/RegisterPage';
 
 const initialState = {
@@ -8,11 +8,16 @@ const initialState = {
   email: '',
   password: '',
   isMember: true,
+  showAlert: true,
 };
 
 const Register = () => {
   // @ts-ignore
   const [values, setValues] = useState(initialState);
+
+  const toggleMember = () => {
+    setValues({ ...values, isMember: !values.isMember });
+  };
 
   const handleChange = (e: Change) => {
     console.log(e.target);
@@ -27,14 +32,17 @@ const Register = () => {
     <Wrapper className="full-page">
       <form className="form" onSubmit={handleSubmit}>
         <Logo />
-        <h3>Login</h3>
-        {/** Name Input */}
-        <FormInput
-          type="text"
-          name="name"
-          value={values.name}
-          onChange={handleChange}
-        />
+        <h3>{values.isMember ? 'Login' : 'Register'}</h3>
+        {values.showAlert && <Alert />}
+        {/** Show Name Input if there is no membership */}
+        {!values.isMember && (
+          <FormInput
+            type="text"
+            name="name"
+            value={values.name}
+            onChange={handleChange}
+          />
+        )}
         {/** Email Input */}
         <FormInput
           type="email"
@@ -52,6 +60,12 @@ const Register = () => {
         <button type="submit" className="btn btn-block">
           submit
         </button>
+        <p>
+          {values.isMember ? 'Not a member yet?' : 'Already a member?'}
+          <button type="button" className="member-btn" onClick={toggleMember}>
+            {values.isMember ? 'Register' : 'Login'}
+          </button>
+        </p>
       </form>
     </Wrapper>
   );
