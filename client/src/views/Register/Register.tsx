@@ -1,31 +1,35 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useState } from 'react';
 import { FormInput, Logo, Alert } from 'components';
 import Wrapper from 'assets/wrappers/RegisterPage';
+import { useAppContext } from 'contexts/app/AppContext';
 
 const initialState = {
   name: '',
   email: '',
   password: '',
   isMember: true,
-  showAlert: true,
 };
 
 const Register = () => {
-  // @ts-ignore
   const [values, setValues] = useState(initialState);
+  const { showAlert, displayAlert } = useAppContext();
 
   const toggleMember = () => {
     setValues({ ...values, isMember: !values.isMember });
   };
 
   const handleChange = (e: Change) => {
-    console.log(e.target);
+    setValues({ ...values, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: Submit) => {
     e.preventDefault();
-    console.log(e.target);
+    const { name, email, password, isMember } = values;
+
+    if (!email || !password || (!isMember && !name)) {
+      displayAlert();
+      return;
+    }
   };
 
   return (
@@ -33,7 +37,7 @@ const Register = () => {
       <form className="form" onSubmit={handleSubmit}>
         <Logo />
         <h3>{values.isMember ? 'Login' : 'Register'}</h3>
-        {values.showAlert && <Alert />}
+        {showAlert && <Alert />}
         {/** Show Name Input if there is no membership */}
         {!values.isMember && (
           <FormInput
