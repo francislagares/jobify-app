@@ -11,6 +11,10 @@ interface IAppContext {
   clearAlert: () => void;
 }
 
+interface IAppProvider {
+  children: React.ReactNode;
+}
+
 const initialState = {
   isLoading: false,
   showAlert: false,
@@ -20,7 +24,7 @@ const initialState = {
 
 export const AppContext = createContext<IAppContext>({} as IAppContext);
 
-export const AppContextProvider: React.FC = ({ children }) => {
+export const AppContextProvider = ({ children }: IAppProvider) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
   const displayAlert = () => {
